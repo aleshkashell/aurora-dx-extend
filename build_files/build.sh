@@ -11,7 +11,23 @@ set -ouex pipefail
 
 # this installs a package from fedora repos
 dnf5 copr enable solopasha/hyprland -y
-dnf5 install -y hyprland \
+dnf5 copr enable lihaohong/yazi -y
+
+echo '[charm]
+name=Charm
+baseurl=https://repo.charm.sh/yum/
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.charm.sh/yum/gpg.key' > /etc/yum.repos.d/charm.repo
+rpm --import https://repo.charm.sh/yum/gpg.key
+
+dnf5 install -y \
+  dua-cli \
+  duf \
+  eza \
+  figlet \
+  fzf \
+  gum \
   hypridle \
   hyprland \
   hyprlock \
@@ -20,9 +36,18 @@ dnf5 install -y hyprland \
   hyprpolkitagent \
   hyprsunset \
   hyprsysteminfo \
+  jq \
+  qemu-user-static \
+  ripgrep \
+  uwsm \
   xdg-desktop-portal-hyprland \
-  uwsm
+  yazi \
+  yq \
+  https://raw.githubusercontent.com/aleshkashell/binaries/refs/heads/master/rpm/epson-inkjet-printer-escpr-1.8.6-1.x86_64.rpm
 
+dnf5 copr disable solopasha/hyprland -y
+dnf5 copr disable lihaohong/yazi -y
+rm /etc/yum.repos.d/charm.repo
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
