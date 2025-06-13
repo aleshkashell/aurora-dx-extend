@@ -24,7 +24,6 @@ rpm --import https://repo.charm.sh/yum/gpg.key
 dnf5 install -y \
   dua-cli \
   duf \
-  eza \
   figlet \
   fzf \
   gum \
