@@ -59,7 +59,7 @@ dnf5 install -y \
 # Printer package
 # https://raw.githubusercontent.com/aleshkashell/binaries/refs/heads/master/rpm/epson-inkjet-printer-escpr-1.8.6-1.x86_64.rpm
 
-dnf5 copr disable solopasha/hyprland -y
+dnf5 copr disable sdegler/hyprland -y
 dnf5 copr disable lihaohong/yazi -y
 rm /etc/yum.repos.d/charm.repo
 # Use a COPR Example:
