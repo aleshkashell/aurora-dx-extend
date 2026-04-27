@@ -32,7 +32,6 @@ dnf5 install -y \
   hyprlock \
   hyprpaper \
   hyprpicker \
-  hyprpolkitagent \
   hyprsunset \
   hyprsysteminfo \
   jq \
