@@ -55,8 +55,9 @@ dnf5 install -y \
   waybar \
   xdg-desktop-portal-hyprland \
   yazi \
-  yq \
-  https://raw.githubusercontent.com/aleshkashell/binaries/refs/heads/master/rpm/epson-inkjet-printer-escpr-1.8.6-1.x86_64.rpm
+  yq
+# Printer package
+# https://raw.githubusercontent.com/aleshkashell/binaries/refs/heads/master/rpm/epson-inkjet-printer-escpr-1.8.6-1.x86_64.rpm
 
 dnf5 copr disable solopasha/hyprland -y
 dnf5 copr disable lihaohong/yazi -y
