@@ -48,6 +48,7 @@ dnf5 install -y \
   SwayNotificationCenter \
   alsa-sof-firmware \
   alsa-utils \
+  awww \
   bc \
   blueman \
   brightnessctl \
