@@ -9,11 +9,29 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
-# this installs a package from fedora repos
-dnf5 copr enable sdegler/hyprland -y
-dnf5 copr enable lihaohong/yazi -y
-dnf5 copr enable errornointernet/packages -y
-dnf5 copr enable tofik/nwg-shell -y
+COPR_REPOS=(
+    sdegler/hyprland
+    erikreider/SwayNotificationCenter
+    errornointernet/packages
+    tofik/nwg-shell
+    alternateved/eza
+    lihaohong/yazi
+    opuk/bottom
+    atim/lazygit
+    atim/lazydocker
+    atim/starship
+    wezfurlong/wezterm-nightly
+    scottames/ghostty
+    scottames/awww
+)
+
+# Enable COPR Repositories
+for repo in "${COPR_REPOS[@]}"; do
+    dnf5 copr enable -y "$repo" 2>&1 || {
+        printf "%s - Failed to enable necessary copr repos\n" "${ERROR}"
+        exit 1
+    }
+done
 
 echo '[charm]
 name=Charm
@@ -30,6 +48,7 @@ dnf5 install -y \
   SwayNotificationCenter \
   alsa-sof-firmware \
   alsa-utils \
+  awww \
   bc \
   blueman \
   brightnessctl \
@@ -53,6 +72,7 @@ dnf5 install -y \
   helix \
   hypridle \
   hyprland \
+  hyprland-guiutils \
   hyprlock \
   hyprpaper \
   hyprpicker \
@@ -127,10 +147,13 @@ installFromUrl https://raw.githubusercontent.com/aleshkashell/binaries/refs/head
 # Yandex disk
 installFromUrl http://repo.yandex.ru/yandex-disk/yandex-disk-latest.x86_64.rpm
 
-dnf5 copr disable sdegler/hyprland -y
-dnf5 copr disable lihaohong/yazi -y
-dnf5 copr disable errornointernet/packages -y
-dnf5 copr disable tofik/nwg-shell -y
+# Disable COPR Repositories
+for repo in "${COPR_REPOS[@]}"; do
+    dnf5 copr disable -y "$repo" 2>&1 || {
+        printf "%s - Failed to disable necessary copr repos\n" "${ERROR}"
+        exit 1
+    }
+done
 
 rm /etc/yum.repos.d/charm.repo
 # Use a COPR Example:
