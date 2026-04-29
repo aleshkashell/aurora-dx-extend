@@ -72,6 +72,7 @@ dnf5 install -y \
   helix \
   hypridle \
   hyprland \
+  hyprland-guiutils \
   hyprlock \
   hyprpaper \
   hyprpicker \
