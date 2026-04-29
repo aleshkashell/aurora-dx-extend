@@ -27,7 +27,7 @@ COPR_REPOS=(
 
 # Enable COPR Repositories
 for repo in "${COPR_REPOS[@]}"; do
-    sudo dnf copr enable -y "$repo" 2>&1 || {
+    dnf5 copr enable -y "$repo" 2>&1 || {
         printf "%s - Failed to enable necessary copr repos\n" "${ERROR}"
         exit 1
     }
@@ -146,11 +146,6 @@ installFromUrl() {
 installFromUrl https://raw.githubusercontent.com/aleshkashell/binaries/refs/heads/master/rpm/epson-inkjet-printer-escpr-1.8.6-1.x86_64.rpm
 # Yandex disk
 installFromUrl http://repo.yandex.ru/yandex-disk/yandex-disk-latest.x86_64.rpm
-
-dnf5 copr disable sdegler/hyprland -y
-dnf5 copr disable lihaohong/yazi -y
-dnf5 copr disable errornointernet/packages -y
-dnf5 copr disable tofik/nwg-shell -y
 
 # Disable COPR Repositories
 for repo in "${COPR_REPOS[@]}"; do
