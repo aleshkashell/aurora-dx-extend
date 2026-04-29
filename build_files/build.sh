@@ -12,6 +12,7 @@ set -ouex pipefail
 # this installs a package from fedora repos
 dnf5 copr enable sdegler/hyprland -y
 dnf5 copr enable lihaohong/yazi -y
+dnf copr enable materka/wallust -y
 
 echo '[charm]
 name=Charm
@@ -127,6 +128,8 @@ installFromUrl http://repo.yandex.ru/yandex-disk/yandex-disk-latest.x86_64.rpm
 
 dnf5 copr disable sdegler/hyprland -y
 dnf5 copr disable lihaohong/yazi -y
+dnf5 copr disable materka/wallust -y
+
 rm /etc/yum.repos.d/charm.repo
 # Use a COPR Example:
 #
