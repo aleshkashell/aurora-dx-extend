@@ -122,7 +122,6 @@ dnf5 install -y \
   rsync \
   slurp \
   swappy \
-  swww \
   tuned \
   tuned-ppd \
   unzip \
