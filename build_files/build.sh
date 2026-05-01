@@ -10,7 +10,8 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 COPR_REPOS=(
-    sdegler/hyprland
+    # sdegler/hyprland
+    lionheartp/Hyprland
     erikreider/SwayNotificationCenter
     errornointernet/packages
     tofik/nwg-shell
@@ -121,7 +122,6 @@ dnf5 install -y \
   rsync \
   slurp \
   swappy \
-  swww \
   tuned \
   tuned-ppd \
   unzip \
