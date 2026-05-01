@@ -91,6 +91,7 @@ dnf5 install -y \
   mpv-mpris \
   nano \
   nautilus \
+  neovim \
   network-manager-applet \
   nm-connection-editor-desktop \
   nvtop \
