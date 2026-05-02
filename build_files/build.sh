@@ -95,6 +95,7 @@ dnf5 install -y \
   neovim \
   network-manager-applet \
   nm-connection-editor-desktop \
+  nmtui \
   nvtop \
   nwg-displays \
   nwg-look \
