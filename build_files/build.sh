@@ -49,6 +49,7 @@ dnf5 install -y \
   SwayNotificationCenter \
   alsa-sof-firmware \
   alsa-utils \
+  archivemount \
   awww \
   bc \
   blueman \
