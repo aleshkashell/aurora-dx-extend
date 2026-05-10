@@ -157,6 +157,8 @@ for repo in "${COPR_REPOS[@]}"; do
 done
 
 rm /etc/yum.repos.d/charm.repo
+
+mkdir /nix
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
