@@ -14,7 +14,8 @@ COPR_REPOS=(
     lionheartp/Hyprland
     erikreider/SwayNotificationCenter
     errornointernet/packages
-    tofik/nwg-shell
+    # tofik/nwg-shell
+    yselkowitz/nwg-shell
     alternateved/eza
     lihaohong/yazi
     opuk/bottom
