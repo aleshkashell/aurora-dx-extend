@@ -2,7 +2,7 @@
 FROM scratch AS ctx
 COPY build_files /
 
-FROM docker.anominus.ru/ublue-os/bazzite-dx:stable
+FROM ghcr.io/ublue-os/bazzite-dx:stable
 
 # # Base Image
 # FROM ghcr.io/ublue-os/bazzite:stable
