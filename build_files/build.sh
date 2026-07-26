@@ -24,6 +24,7 @@ COPR_REPOS=(
     wezfurlong/wezterm-nightly
     scottames/ghostty
     scottames/awww
+    lantw44/guix
 )
 
 # Enable COPR Repositories
@@ -67,6 +68,7 @@ dnf5 install -y \
   git \
   gnome-system-monitor \
   grim \
+  guix \
   gum \
   gvfs \
   gvfs-mtp \
@@ -159,6 +161,9 @@ done
 rm /etc/yum.repos.d/charm.repo
 
 mkdir /nix
+# If you want to use prebuilt packages, you should run before using guix package
+for i in /usr/share/guix/*.pub; do guix archive --authorize < "$i"; done
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
