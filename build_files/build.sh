@@ -162,7 +162,7 @@ done
 rm /etc/yum.repos.d/charm.repo
 
 mkdir /nix
-mkdir /gnu
+mkdir -p /gnu/store
 # If you want to use prebuilt packages, you should run before using guix package
 for i in /usr/share/guix/*.pub; do guix archive --authorize < "$i"; done
 
