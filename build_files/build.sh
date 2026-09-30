@@ -98,6 +98,7 @@ dnf5 install -y \
   neovim \
   network-manager-applet \
   nm-connection-editor-desktop \
+  noctalia-git \
   nvtop \
   nwg-displays \
   nwg-look \
