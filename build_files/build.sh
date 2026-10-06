@@ -167,6 +167,15 @@ mkdir -p /gnu/store
 # If you want to use prebuilt packages, you should run before using guix package
 for i in /usr/share/guix/*.pub; do guix archive --authorize < "$i"; done
 
+cat <<EOF > /usr/share/wayland-sessions/hyprland-uwsm.desktop
+[Desktop Entry]
+Name=Hyprland (UWSM)
+Comment=Hyprland compositor managed by UWSM
+Exec=uwsm start hyprland
+Type=Application
+DesktopNames=Hyprland
+Keywords=tiling;wayland;compositor;
+EOF
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
