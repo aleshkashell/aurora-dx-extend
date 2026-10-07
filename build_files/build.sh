@@ -171,7 +171,7 @@ cat <<EOF > /usr/share/wayland-sessions/hyprland-uwsm.desktop
 [Desktop Entry]
 Name=Hyprland (UWSM)
 Comment=Hyprland compositor managed by UWSM
-Exec=uwsm start hyprland
+Exec=uwsm start start-hyprland
 Type=Application
 DesktopNames=Hyprland
 Keywords=tiling;wayland;compositor;
