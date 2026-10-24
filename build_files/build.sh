@@ -36,6 +36,16 @@ for repo in "${COPR_REPOS[@]}"; do
     }
 done
 
+# bazzite-dx ships the Fyra Labs "terra" rebuild of Xwayland (terra-xorg-x11-server-Xwayland),
+# which conflicts with the Fedora xorg-x11-server-Xwayland that the COPR hyprland requires.
+# Swap it for the Fedora build so hyprland resolves (215 packages would otherwise break).
+if rpm -q terra-xorg-x11-server-Xwayland >/dev/null 2>&1; then
+    dnf5 swap -y terra-xorg-x11-server-Xwayland xorg-x11-server-Xwayland || {
+        printf "%s - Failed to swap terra Xwayland for xorg-x11-server-Xwayland\n" "${ERROR}"
+        exit 1
+    }
+fi
+
 echo '[charm]
 name=Charm
 baseurl=https://repo.charm.sh/yum/
@@ -141,6 +151,52 @@ dnf5 install -y \
   yad \
   yazi \
   yq
+
+### ROCm GPU compute stack for AI workloads (PyTorch, llama.cpp, ComfyUI, etc.)
+# The base image (bazzite-dx) already ships rocm-hip, rocm-opencl, rocm-clinfo
+# and rocm-smi; here we add the math/ML libraries on top.
+dnf5 --setopt=install_weak_deps=False install -y \
+  hipblas \
+  hipblaslt \
+  hipfft \
+  hiprand \
+  hipsolver \
+  hipsparse \
+  miopen \
+  rccl \
+  rocblas \
+  rocfft \
+  rocminfo \
+  rocrand \
+  rocsolver \
+  rocsparse
+
+# Desktop sessions get GPU device access via logind ACLs out of the box, but
+# headless use (SSH, systemd services) needs group membership. This oneshot
+# unit adds every human user to the render and video groups on each boot.
+cat <<'EOF' > /usr/lib/systemd/system/rocm-user-groups.service
+[Unit]
+Description=Add human users to render and video groups for ROCm GPU access
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/rocm-user-groups
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+cat <<'EOF' > /usr/libexec/rocm-user-groups
+#!/bin/bash
+
+for user in $(awk -F: '$3 >= 1000 && $3 < 65534 {print $1}' /etc/passwd); do
+    usermod -aG render,video "$user" 2>/dev/null || true
+done
+EOF
+chmod +x /usr/libexec/rocm-user-groups
+systemctl enable rocm-user-groups.service
 
 installFromUrl() {
   wget $1
