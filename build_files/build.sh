@@ -25,7 +25,6 @@ COPR_REPOS=(
     wezfurlong/wezterm-nightly
     scottames/ghostty
     scottames/awww
-    lantw44/guix
 )
 
 # Enable COPR Repositories
@@ -76,7 +75,6 @@ dnf5 install -y \
   git \
   gnome-system-monitor \
   grim \
-  guix \
   gum \
   gvfs \
   gvfs-mtp \
@@ -170,9 +168,6 @@ done
 rm /etc/yum.repos.d/charm.repo
 
 mkdir /nix
-mkdir -p /gnu/store
-# If you want to use prebuilt packages, you should run before using guix package
-for i in /usr/share/guix/*.pub; do guix archive --authorize < "$i"; done
 
 cat <<EOF > /usr/share/wayland-sessions/hyprland-uwsm.desktop
 [Desktop Entry]
