@@ -45,6 +45,13 @@ gpgkey=https://repo.charm.sh/yum/gpg.key' > /etc/yum.repos.d/charm.repo
 rpm --import https://repo.charm.sh/yum/gpg.key
 rpm --import http://repo.yandex.ru/yandex-disk/YANDEX-DISK-KEY.GPG
 
+# The base image ships terra-xorg-x11-server-Xwayland, which provides only an
+# unqualified "xorg-x11-server-Xwayland" and conflicts with the stock package;
+# hyprland requires xorg-x11-server-Xwayland(x86-64), so swap to the stock one.
+if rpm -q terra-xorg-x11-server-Xwayland >/dev/null 2>&1; then
+    dnf5 -y swap terra-xorg-x11-server-Xwayland xorg-x11-server-Xwayland
+fi
+
 dnf5 install -y \
   ImageMagick \
   NetworkManager-wifi \
