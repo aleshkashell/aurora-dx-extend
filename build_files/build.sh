@@ -148,8 +148,8 @@ dnf5 install -y \
   yq
 
 installFromUrl() {
-  wget $1
-  rpm -ivh --nodigest --nofiledigest ${1##*/}
+  wget --no-hsts $1
+  rpm -ivh --nodigest --nofiledigest --nosignature ${1##*/}
   rm ${1##*/}
 }
 # Printer package
